@@ -14,9 +14,6 @@
       <form action='/gossips/<%= gossip.id %>' method='POST' >
         Saisi ton commentaire :  <input type='text' name='gossip_comment'/><br/>
         <input type="hidden" name="gossip_id" value=<%= gossip.id %> >
-        <input type="hidden" name="gossip_author" value="<%= gossip.author %>" >
-        <input type="hidden" name="gossip_content" value="<%= gossip.content %>" >
-        <input type="hidden" name="gossip_comments" value="<%= gossip.comments %>" >
         <input type='submit'/>
       </form>
       <% gossip.comments.each do |comment| %>

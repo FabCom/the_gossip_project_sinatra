@@ -22,19 +22,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/gossips/update/' do
-    Gossip.new(params['gossip_id'].to_i, params['gossip_author'], params['gossip_content'], params['gossip_comments']).update
+    Gossip.new(params['gossip_id'].to_i, params['gossip_author'], params['gossip_content']).update
     redirect '/'
   end
 
   post '/gossips/:id' do
-    comments = []
-    params['gossip_comments'].split.each do |current|
-      if current != "[" || current != "]" || current != '[]'
-        comments << current
-      end
-    comments.push(params['gossip_comment'])
-    end
-    Gossip.new(params['gossip_id'].to_i, params['gossip_author'], params['gossip_content'], comments).update
+    Gossip.add_comment(params['gossip_id'].to_i, params['gossip_comment'])
     redirect '/'
   end
 

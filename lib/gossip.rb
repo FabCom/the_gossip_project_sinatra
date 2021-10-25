@@ -1,11 +1,10 @@
 class Gossip
   attr_accessor :author, :content, :id, :comments
 
-  def initialize( id, author, content, comments )
+  def initialize(id, author, content)
     @author = author
     @content = content
     @id = id
-    if comments == "" then @comments = [] else @comments = comments end
   end
 
   def self.id_new
@@ -55,7 +54,6 @@ class Gossip
   end
 
   def update
-    all_gossips = {}
     json = File.read('./db/gossip.json')
     all_gossips = JSON.parse(json)
     all_gossips.delete(@id.to_s)
@@ -63,5 +61,9 @@ class Gossip
     file = File.open("./db/gossip.json", 'w')
     file.write(JSON.pretty_generate(all_gossips))
     file.close
+  end
+
+  def self.add_comment(id, comment)
+    Gossip.find_one(id).comments.push(comment).update
   end
 end

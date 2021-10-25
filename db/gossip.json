@@ -1,10 +1,14 @@
 {
+  "1": {
+    "author": "FabComX",
+    "content": "N'aime toujours pas les potins !",
+    "comments": [
+
+    ]
+  },
   "0": {
     "author": "FabComX",
     "content": "N'aime pas les potins",
-    "comments": [
-      "[",
-      "aaaa"
-    ]
+    "comments": "[]"
   }
 }
