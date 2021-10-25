@@ -1,5 +1,5 @@
 class Gossip
-  attr_accessor :author, :content, :id, :comments
+  attr_accessor :author, :content, :id
 
   def initialize(id, author, content)
     @author = author
@@ -23,7 +23,7 @@ class Gossip
     else
       all_gossips = {}
     end
-    all_gossips[@id] = { author: @author, content: @content, comments: @comments}
+    all_gossips[@id] = { author: @author, content: @content}
     file = File.open("./db/gossip.json", 'w')
     file.write(JSON.pretty_generate(all_gossips))
     file.close
@@ -34,7 +34,7 @@ class Gossip
     json = File.read('./db/gossip.json')
     if json != ""
       JSON.parse(json).each do |current|
-        all_gossips << Gossip.new(current[0], current[1]['author'], current[1]['content'], current[1]['comments'])
+        all_gossips << Gossip.new(current[0], current[1]['author'], current[1]['content'])
       end
     else
       all_gossips = []
@@ -57,13 +57,10 @@ class Gossip
     json = File.read('./db/gossip.json')
     all_gossips = JSON.parse(json)
     all_gossips.delete(@id.to_s)
-    all_gossips[@id.to_i] = { author: @author, content: @content, comments: @comments}
+    # comments = all_gossips[@id.to_i][1]['comments']
+    all_gossips[@id.to_i] = { author: @author, content: @content}
     file = File.open("./db/gossip.json", 'w')
     file.write(JSON.pretty_generate(all_gossips))
     file.close
-  end
-
-  def self.add_comment(id, comment)
-    Gossip.find_one(id).comments.push(comment).update
   end
 end

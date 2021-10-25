@@ -1,10 +1,21 @@
 <html>
   <head>
     <title>Voir un potin</title>
+    <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
   </head>
+  <header>
+    <nav>
+      <div class="title">
+        <h1>GOSSIP PROJECT</h1>
+      </div>
+      <div class="nav-link">
+        <a href="/gossips/new/">Ajouter</a>
+      </div>
+    </nav>
+  </header>
   <body>
-    <div class="">
-      <h1>POTIN n° <%= gossip.id %> de <%= gossip.author %> <h1>
+    <div class="card">
+      <h1>POTIN n° <%= gossip.id %> de <%= gossip.author %> </h1>
       <p><%= gossip.content %></p>
       <a href="/gossips/<%= gossip.id %>/edit">Éditer</a>
       <a href="/">Retour à l'accueil</a>
@@ -12,12 +23,13 @@
     <div class="">
       <h2>Commentaires</h2>
       <form action='/gossips/<%= gossip.id %>' method='POST' >
-        Saisi ton commentaire :  <input type='text' name='gossip_comment'/><br/>
+        Ton blaze :  <input type='text' name='comment_author'/><br/>
+        Ton commentaire :  <input type='text' name='comment_content'/><br/>
         <input type="hidden" name="gossip_id" value=<%= gossip.id %> >
         <input type='submit'/>
       </form>
-      <% gossip.comments.each do |comment| %>
-        <li><%=  comment %></li>
+      <% comments.each do |comment| %>
+        <li><%=  comment.author %> le <%=  Time.parse(comment.date).strftime("%d/%m/%Y")  %> <br> <%=  comment.content %></li>
       <% end %>
     </div>
   </body>

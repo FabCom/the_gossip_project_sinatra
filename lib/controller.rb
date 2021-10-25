@@ -9,12 +9,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/gossips/new/' do
-    Gossip.new(Gossip.id_new, params['gossip_author'], params['gossip_content'],'').save
+    Gossip.new(Gossip.id_new, params['gossip_author'], params['gossip_content']).save
     redirect '/'
   end
 
   get '/gossips/:id' do
-    erb :show_gossip, locals: {gossip: Gossip.find_one(params['id'])}
+    erb :show_gossip, locals: {gossip: Gossip.find_one(params['id']), comments: Comment.find_many(params['id'])}
   end
 
   get '/gossips/:id/edit' do
@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/gossips/:id' do
-    Gossip.add_comment(params['gossip_id'].to_i, params['gossip_comment'])
+    Comment.new(Comment.id_new, params['gossip_id'].to_i, params['comment_author'], params['comment_content'], Time.now).save
     redirect '/'
   end
 

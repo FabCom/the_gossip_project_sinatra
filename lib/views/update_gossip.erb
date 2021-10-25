@@ -8,7 +8,6 @@
     <form action='/gossips/update/' method='POST' >
       Ton nom :  <input type='text' name='gossip_author' value="<%= gossip.author %>"/><br/>
       Le potin : <input type='text' name='gossip_content' value="<%= gossip.content %>"/><br/>
-      <input type="hidden" name="gossip_comments" value="<%= gossip.comments %>">
       <input type="hidden" name="gossip_id" value="<%= gossip.id %>">
       <input type='submit' />
     </form>

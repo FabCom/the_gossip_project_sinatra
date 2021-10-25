@@ -1,0 +1,20 @@
+{
+  "0": {
+    "author": "Jojo",
+    "gossip_id": 1,
+    "content": "Que veux-tu que je commente !",
+    "date": "2021-10-26 00:26:56 +0200"
+  },
+  "1": {
+    "author": "Lolo",
+    "gossip_id": 0,
+    "content": "Moi non plus",
+    "date": "2021-10-26 00:33:21 +0200"
+  },
+  "2": {
+    "author": "Rick",
+    "gossip_id": 1,
+    "content": "J'ai pas l'inspi.",
+    "date": "2021-10-26 00:51:24 +0200"
+  }
+}

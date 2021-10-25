@@ -1,25 +1,57 @@
 <html>
   <head>
     <title>The Gossip Project</title>
+    <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="/style.css">
   </head>
   <header>
     <nav>
-      <div class="">
-        GOSSIP PROJECT
+      <div class="nav-link">
+        <h1>GOSSIP PROJECT</h1>
       </div>
-      <div class="">
-        <a href="/gossips/new/">Ajouter</a>
+      <div class="nav-link">
+        <h3><a href="/gossips/new/">Ajouter</a></h3>
       </div>
     </nav>
   </header>
   <body>
-    <h1>Mon super site de gossip, depuis le dossier views !</h1>
-    <div class="">
+    <div class="cards">
       <% gossips.each do |gossip| %>
-        <h2><%=  gossip.author %></h2>
-        <p><%=  gossip.content %></p>
-        <a href="/gossips/<%= gossip.id %>">voir</a>
+        <div class="card">
+          <h2><%=  gossip.author %></h2>
+          <p><%=  gossip.content %></p>
+          <p class="right"><a href="/gossips/<%= gossip.id %>">voir</a></p>
+        </div>
       <% end %>
     </div>
   </body>
 </html>
+<style media="screen">
+  .nav{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .nav-link{
+    max-width: 350px;
+  }
+
+  .cards{
+    display: flex;
+    flex-direction: row;
+  }
+    .card{
+    width: 20%;
+    max-width: 350px;
+    margin: 20px;
+    padding: 15px;
+    background-color: tomato;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 15px;
+    }
+
+  .right{
+    text-align: right;
+  }
+</style>
